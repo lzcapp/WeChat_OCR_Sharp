@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Google.Protobuf;
+using OcrProtobuf;
 
 namespace WeChat_OCR_Lib {
     [StructLayout(LayoutKind.Sequential)]
@@ -71,7 +73,7 @@ namespace WeChat_OCR_Lib {
         public void SendOCRTask(int taskId, string picPath)
         {
             dicImageID[taskId] = picPath;
-            var ocrRequest = new OcrRequest
+            var ocrRequest = new OcrRequest()
             {
                 Unknow = 0,
                 TaskId = taskId,

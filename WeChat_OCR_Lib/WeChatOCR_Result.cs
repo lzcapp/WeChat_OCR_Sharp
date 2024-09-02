@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Newtonsoft.Json;
 
 namespace WeChat_OCR_Lib {
     public class WeChatOCRResult {

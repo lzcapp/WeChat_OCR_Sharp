@@ -23,9 +23,10 @@ namespace WeChat_OCR_Lib {
         public void Dispose() => OCRManager.KillWeChatOCR();
 
         public void Run(string imagePath, Action<string, WeChatOCRResult?>? callback) {
-            if (callback != null)
+            if (callback != null) {
                 OCRManager.SetOcrResultCallback(callback);
-            int retryCount = 0;
+            }
+            var retryCount = 0;
             while (retryCount <= MaxRetries) {
                 try {
                     OCRManager.DoOcrTask(imagePath);
@@ -44,14 +45,16 @@ namespace WeChat_OCR_Lib {
             using var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\WeChat");
             if (key == null)
                 return string.Empty;
-            if (key.GetValue("DisplayVersion") is not string displayVersion)
+            if (key.GetValue("DisplayVersion") is not string displayVersion) {
                 return string.Empty;
+            }
+
             return Path.Combine(@"C:\Program Files\Tencent\WeChat", "[" + displayVersion + "]");
         }
 
-        public string GetWeChatOcrExePath() {
-            string searchPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"Tencent\WeChat\XPlugin\Plugins\WeChatOCR");
-            return Directory.EnumerateFiles(searchPath, "WeChatOCR.exe", SearchOption.AllDirectories).FirstOrDefault();
+        private string GetWeChatOcrExePath() {
+            var searchPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"Tencent\WeChat\XPlugin\Plugins\WeChatOCR");
+            return Directory.EnumerateFiles(searchPath, "WeChatOCR.exe", SearchOption.AllDirectories).FirstOrDefault() ?? string.Empty;
         }
     }
 }

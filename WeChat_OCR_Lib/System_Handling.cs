@@ -1,4 +1,6 @@
-﻿namespace WeChat_OCR_Lib {
+﻿using System.Management;
+
+namespace WeChat_OCR_Lib {
     internal static class SystemHandling {
         internal static string GetMmmojoName() {
             var mmmojoName = Is64BitOperatingSystem() ? "mmmojo_64.dll" : "mmmojo.dll";

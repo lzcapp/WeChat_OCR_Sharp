@@ -3,7 +3,7 @@
 // ReSharper disable IdentifierTypo
 
 namespace WeChat_OCR_Lib {
-    internal class FileHandling {
+    public class FileHandling {
         public static string GetWeChatDir() {
             using RegistryKey? key = Registry.LocalMachine.OpenSubKey(SystemHandling.Is64BitOperatingSystem() ? @"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\WeChat" : @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\WeChat");
             if (key == null) {
