@@ -1,2 +1,2 @@
-# WeChat_OCR_Sharp
+# WeChat_OCR_Sharp (NOT WORKING YET)
  
